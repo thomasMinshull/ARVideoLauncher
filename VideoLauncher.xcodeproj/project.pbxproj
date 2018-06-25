@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		55D8197220E17C87009C4843 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D8197120E17C87009C4843 /* AppDelegate.swift */; };
-		55D8197420E17C87009C4843 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D8197320E17C87009C4843 /* art.scnassets */; };
 		55D8197620E17C87009C4843 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D8197520E17C87009C4843 /* ViewController.swift */; };
 		55D8197920E17C87009C4843 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D8197720E17C87009C4843 /* Main.storyboard */; };
 		55D8197B20E17C89009C4843 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D8197A20E17C89009C4843 /* Assets.xcassets */; };
@@ -18,7 +17,6 @@
 /* Begin PBXFileReference section */
 		55D8196E20E17C87009C4843 /* VideoLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoLauncher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D8197120E17C87009C4843 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		55D8197320E17C87009C4843 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		55D8197520E17C87009C4843 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		55D8197820E17C87009C4843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55D8197A20E17C89009C4843 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				55D8197120E17C87009C4843 /* AppDelegate.swift */,
-				55D8197320E17C87009C4843 /* art.scnassets */,
 				55D8197520E17C87009C4843 /* ViewController.swift */,
 				55D8197720E17C87009C4843 /* Main.storyboard */,
 				55D8197A20E17C89009C4843 /* Assets.xcassets */,
@@ -125,7 +122,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55D8197420E17C87009C4843 /* art.scnassets in Resources */,
 				55D8197E20E17C89009C4843 /* LaunchScreen.storyboard in Resources */,
 				55D8197B20E17C89009C4843 /* Assets.xcassets in Resources */,
 				55D8197920E17C87009C4843 /* Main.storyboard in Resources */,
@@ -287,6 +283,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FHZ72ELYQ2;
 				INFOPLIST_FILE = VideoLauncher/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,6 +302,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FHZ72ELYQ2;
 				INFOPLIST_FILE = VideoLauncher/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
