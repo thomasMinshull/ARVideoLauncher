@@ -13,6 +13,7 @@ import SpriteKit
 class VideoNode: SCNNode {
     var spriteKitScene: SKScene!
     var videoSpriteKitNode: SKVideoNode!
+    var isVideoPaused = false
     
     init(with width: CGFloat, height: CGFloat, fileName: String, rotation: Float = 0.0) {
         super.init()
@@ -44,14 +45,16 @@ class VideoNode: SCNNode {
     }
     
     func play() {
-        videoSpriteKitNode?.play()
+        if let videoSpriteKitNode = videoSpriteKitNode {
+            isVideoPaused = false
+            videoSpriteKitNode.play()
+        }
     }
     
     func pause() {
-        videoSpriteKitNode?.pause()
-    }
-    
-    func isPaused() -> Bool {
-        return videoSpriteKitNode?.isPaused ?? false
+        if let videoSpriteKitNode = videoSpriteKitNode {
+            isVideoPaused = true
+            videoSpriteKitNode.pause()
+        }
     }
 }

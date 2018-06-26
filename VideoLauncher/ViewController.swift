@@ -40,12 +40,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         configuration.detectionImages = trackingImages
 
         sceneView.session.run(configuration)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
     }
+    
+    @IBAction func SceneViewTapped(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: sceneView)
+        
+        let results = sceneView.hitTest(location, options: [.boundingBoxOnly : true])
+        let videoNode = results.filter { (result) -> Bool in
+            return result.node is VideoNode
+            }.map { (result) -> VideoNode in
+                return result.node as! VideoNode
+            }.first
+        
+        if let videoNode = videoNode {
+            if videoNode.isVideoPaused {
+                videoNode.play()
+            } else {
+                videoNode.pause()
+            }
+        }
+    }
+    
 
     // MARK: - ARSCNViewDelegate
     
@@ -65,20 +86,5 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         if let vidNode = node as? VideoNode {
             vidNode.play()
         }
-    }
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
     }
 }
