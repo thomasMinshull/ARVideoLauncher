@@ -18,6 +18,8 @@
                         <gestureRecognizers/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="RzR-zp-RlV" appends="YES" id="qNN-vT-OLd"/>
+                            <outletCollection property="gestureRecognizers" destination="x56-Vr-5Qp" appends="YES" id="eEa-xM-tKT"/>
+                            <outletCollection property="gestureRecognizers" destination="xhN-4o-fq1" appends="YES" id="AJA-fJ-LJs"/>
                         </connections>
                     </arscnView>
                     <connections>
@@ -27,9 +29,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="RzR-zp-RlV">
                     <connections>
-                        <action selector="SceneViewTapped:" destination="BV1-FR-VrT" id="xJF-9l-2Fo"/>
+                        <action selector="sceneViewTapped:" destination="BV1-FR-VrT" id="4tm-Yc-IDX"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="x56-Vr-5Qp">
+                    <connections>
+                        <action selector="sceneViewLongPress:" destination="BV1-FR-VrT" id="4mn-VG-C31"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pinchGestureRecognizer id="xhN-4o-fq1">
+                    <connections>
+                        <action selector="sceneViewPinched:" destination="BV1-FR-VrT" id="lR9-bO-hGV"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
         </scene>
     </scenes>

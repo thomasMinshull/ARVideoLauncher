@@ -48,7 +48,37 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
-    @IBAction func SceneViewTapped(_ sender: UITapGestureRecognizer) {
+    @IBAction func sceneViewPinched(_ sender: UIPinchGestureRecognizer) {
+        let location = sender.location(in: sceneView)
+        
+        if sender.state == .began || sender.state == .changed {
+            let results = sceneView.hitTest(location, options: [.boundingBoxOnly: true])
+            let result = results.filter { (result) -> Bool in
+                return result.node is VideoNode
+                }.map { (result) -> VideoNode in
+                    return result.node as! VideoNode
+                }.first
+            
+            guard let videoNode = result else { return }
+
+            let scalex = Float(sender.scale) * videoNode.scale.x
+            let scaley = Float(sender.scale) * videoNode.scale.y
+            let scalez = Float(sender.scale) * videoNode.scale.z
+            
+            print("scalex: \(scalex) scaley: \(scaley) scalez: \(scalez)")
+            print("videoNode scale: \(videoNode.scale)")
+            
+            result?.scale = SCNVector3(scalex, scaley, scalez)
+            sender.scale = 1 
+        }
+        
+    }
+    
+    @IBAction func sceneViewLongPress(_ sender: UILongPressGestureRecognizer) {
+        
+    }
+    
+    @IBAction func sceneViewTapped(_ sender: UITapGestureRecognizer) {
         let location = sender.location(in: sceneView)
         
         let results = sceneView.hitTest(location, options: [.boundingBoxOnly : true])
