@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5584860020E30C26008E37C1 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558485FF20E30C26008E37C1 /* RecordViewController.swift */; };
 		55BC5F5C20E1ADFB00A2C0D5 /* VideoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BC5F5B20E1ADFB00A2C0D5 /* VideoNode.swift */; };
 		55BC5F5F20E1C85100A2C0D5 /* will.mov in Resources */ = {isa = PBXBuildFile; fileRef = 55BC5F5E20E1C85100A2C0D5 /* will.mov */; };
 		55D8197220E17C87009C4843 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D8197120E17C87009C4843 /* AppDelegate.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		558485FF20E30C26008E37C1 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		55BC5F5B20E1ADFB00A2C0D5 /* VideoNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoNode.swift; sourceTree = "<group>"; };
 		55BC5F5E20E1C85100A2C0D5 /* will.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = will.mov; sourceTree = "<group>"; };
 		55D8196E20E17C87009C4843 /* VideoLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoLauncher.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +41,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5584860120E310AA008E37C1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				55D8197520E17C87009C4843 /* ViewController.swift */,
+				558485FF20E30C26008E37C1 /* RecordViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5584860220E310D2008E37C1 /* SCNNodes */ = {
+			isa = PBXGroup;
+			children = (
+				55BC5F5B20E1ADFB00A2C0D5 /* VideoNode.swift */,
+			);
+			path = SCNNodes;
+			sourceTree = "<group>";
+		};
+		5584860320E31156008E37C1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				55D8197120E17C87009C4843 /* AppDelegate.swift */,
+				55D8197720E17C87009C4843 /* Main.storyboard */,
+				55D8197A20E17C89009C4843 /* Assets.xcassets */,
+				55D8197C20E17C89009C4843 /* LaunchScreen.storyboard */,
+				55D8197F20E17C89009C4843 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		55D8196520E17C87009C4843 = {
 			isa = PBXGroup;
 			children = (
@@ -59,13 +90,9 @@
 			isa = PBXGroup;
 			children = (
 				55BC5F5E20E1C85100A2C0D5 /* will.mov */,
-				55D8197120E17C87009C4843 /* AppDelegate.swift */,
-				55D8197520E17C87009C4843 /* ViewController.swift */,
-				55BC5F5B20E1ADFB00A2C0D5 /* VideoNode.swift */,
-				55D8197720E17C87009C4843 /* Main.storyboard */,
-				55D8197A20E17C89009C4843 /* Assets.xcassets */,
-				55D8197C20E17C89009C4843 /* LaunchScreen.storyboard */,
-				55D8197F20E17C89009C4843 /* Info.plist */,
+				5584860120E310AA008E37C1 /* ViewControllers */,
+				5584860220E310D2008E37C1 /* SCNNodes */,
+				5584860320E31156008E37C1 /* Resources */,
 			);
 			path = VideoLauncher;
 			sourceTree = "<group>";
@@ -145,6 +172,7 @@
 				55BC5F5C20E1ADFB00A2C0D5 /* VideoNode.swift in Sources */,
 				55D8197620E17C87009C4843 /* ViewController.swift in Sources */,
 				55D8197220E17C87009C4843 /* AppDelegate.swift in Sources */,
+				5584860020E30C26008E37C1 /* RecordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

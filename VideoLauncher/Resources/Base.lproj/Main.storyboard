@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fj6-Ts-yYF">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="VideoLauncher" customModuleProvider="target" sceneMemberID="viewController">
+                    <arscnView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BrB-h1-WRS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="RzR-zp-RlV" appends="YES" id="qNN-vT-OLd"/>
+                            <outletCollection property="gestureRecognizers" destination="x56-Vr-5Qp" appends="YES" id="eEa-xM-tKT"/>
+                            <outletCollection property="gestureRecognizers" destination="xhN-4o-fq1" appends="YES" id="AJA-fJ-LJs"/>
+                        </connections>
+                    </arscnView>
+                    <tabBarItem key="tabBarItem" title="Item" id="ORc-pb-BMa"/>
+                    <connections>
+                        <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="RzR-zp-RlV">
+                    <connections>
+                        <action selector="sceneViewTapped:" destination="BV1-FR-VrT" id="4tm-Yc-IDX"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="x56-Vr-5Qp">
+                    <connections>
+                        <action selector="sceneViewLongPress:" destination="BV1-FR-VrT" id="4mn-VG-C31"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pinchGestureRecognizer id="xhN-4o-fq1">
+                    <connections>
+                        <action selector="sceneViewPinched:" destination="BV1-FR-VrT" id="lR9-bO-hGV"/>
+                    </connections>
+                </pinchGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="975.20000000000005" y="88.605697151424295"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="7MX-gn-19m">
+            <objects>
+                <viewController id="t2V-P5-g2W" customClass="RecordViewController" customModule="VideoLauncher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zJK-2A-Te2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ht-wS-CaR">
+                                <rect key="frame" x="94" y="318" width="170" height="30"/>
+                                <state key="normal" title="Record Photo">
+                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="RecordButtonTapped:" destination="t2V-P5-g2W" eventType="touchUpInside" id="GU3-W5-uz5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4ht-wS-CaR" firstAttribute="centerX" secondItem="bGC-nY-4ay" secondAttribute="centerX" id="GC3-WA-HBk"/>
+                            <constraint firstItem="4ht-wS-CaR" firstAttribute="centerY" secondItem="bGC-nY-4ay" secondAttribute="centerY" id="KJY-7q-KZH"/>
+                            <constraint firstItem="4ht-wS-CaR" firstAttribute="width" secondItem="zJK-2A-Te2" secondAttribute="width" multiplier="1:2" id="jXf-CW-TrU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bGC-nY-4ay"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Py6-8b-ISr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="85v-Bg-COT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="973.60000000000002" y="816.34182908545733"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Hjd-nx-vOT">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Fj6-Ts-yYF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="orZ-fa-JBx">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="relationship" relationship="viewControllers" id="TX1-N9-rsD"/>
+                        <segue destination="t2V-P5-g2W" kind="relationship" relationship="viewControllers" id="WoD-tL-8X0"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="opH-9p-b6K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="36" y="88.605697151424295"/>
+        </scene>
+    </scenes>
+</document>
