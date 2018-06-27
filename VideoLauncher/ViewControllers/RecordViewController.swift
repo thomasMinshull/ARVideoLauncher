@@ -181,8 +181,6 @@ class RecordViewController: UIViewController {
     func presentCameraForPhoto() {
         let imageKey = "public.image"
         
-        let keys = UIImagePickerController.availableMediaTypes(for: .camera)
-        
         guard (UIImagePickerController.availableMediaTypes(for: .camera)?.contains(imageKey))! else {
             return
         }
