@@ -71,19 +71,25 @@
                                     <action selector="resetButtonTapped:" destination="t2V-P5-g2W" eventType="touchUpInside" id="EIu-T5-sOc"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="LMv-Oc-5sg">
+                                <rect key="frame" x="177.5" y="298" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4ht-wS-CaR" firstAttribute="centerX" secondItem="bGC-nY-4ay" secondAttribute="centerX" id="GC3-WA-HBk"/>
                             <constraint firstItem="4ht-wS-CaR" firstAttribute="centerY" secondItem="bGC-nY-4ay" secondAttribute="centerY" id="KJY-7q-KZH"/>
                             <constraint firstItem="HGT-7u-eCJ" firstAttribute="leading" secondItem="bGC-nY-4ay" secondAttribute="leading" constant="16" id="Um0-Xf-uP2"/>
+                            <constraint firstItem="LMv-Oc-5sg" firstAttribute="centerX" secondItem="bGC-nY-4ay" secondAttribute="centerX" id="WcI-lK-57t"/>
                             <constraint firstItem="HGT-7u-eCJ" firstAttribute="top" secondItem="bGC-nY-4ay" secondAttribute="top" id="ZB1-sF-3jY"/>
                             <constraint firstItem="4ht-wS-CaR" firstAttribute="width" secondItem="zJK-2A-Te2" secondAttribute="width" multiplier="1:2" id="jXf-CW-TrU"/>
+                            <constraint firstItem="4ht-wS-CaR" firstAttribute="top" secondItem="LMv-Oc-5sg" secondAttribute="bottom" constant="8" id="lNs-i6-1zn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bGC-nY-4ay"/>
                     </view>
                     <navigationItem key="navigationItem" id="xRJ-BZ-tKG"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="LMv-Oc-5sg" id="7zi-PR-7Hf"/>
                         <outlet property="recordButton" destination="4ht-wS-CaR" id="ZPe-gx-gL2"/>
                         <outlet property="resetButton" destination="HGT-7u-eCJ" id="fC9-tx-Baf"/>
                     </connections>
