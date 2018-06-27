@@ -46,5 +46,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Microphone is used to record audio while uploading videos to be viewed in AR</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Camera access is used to create images that can start AR videos</string>
 </dict>
 </plist>

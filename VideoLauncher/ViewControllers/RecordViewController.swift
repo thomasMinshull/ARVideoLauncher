@@ -13,7 +13,8 @@ class RecordViewController: UIViewController {
     @IBOutlet var resetButton: UIButton!
     
     let imagePickerController = UIImagePickerController()
-    var image: UIImage?
+    private var image: UIImage?
+    private var url: URL?
     
     private enum RecordState {
         case recordPhoto
@@ -160,7 +161,9 @@ class RecordViewController: UIViewController {
         // change buttons behavour based on state // refactore each behavour into different functions
         switch state {
         case .recordPhoto?:
-            presentCamerForPhoto()
+            presentCameraForPhoto()
+        case .recordVideo?:
+            presentCameraForVideo()
         default:
             return
         }
@@ -173,8 +176,10 @@ class RecordViewController: UIViewController {
     
     // MARK: - Helper Functions
     
-    func presentCamerForPhoto() {
+    func presentCameraForPhoto() {
         let imageKey = "public.image"
+        
+        let keys = UIImagePickerController.availableMediaTypes(for: .camera)
         
         guard (UIImagePickerController.availableMediaTypes(for: .camera)?.contains(imageKey))! else {
             return
@@ -186,19 +191,35 @@ class RecordViewController: UIViewController {
         present(imagePickerController, animated: true, completion: nil)
     }
     
+    func presentCameraForVideo() {
+        let imageKey = "public.movie"
+        
+        guard (UIImagePickerController.availableMediaTypes(for: .camera)?.contains(imageKey))! else {
+            return
+        }
+        
+        imagePickerController.mediaTypes = [imageKey]
+        imagePickerController.sourceType = UIImagePickerController.SourceType.camera
+        imagePickerController.allowsEditing = false
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
 }
 
 extension RecordViewController: UIImagePickerControllerDelegate {
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // ToDo possibly update state here based on previous state
-        
         switch state {
         case .recordPhoto?:
             handleDidFetchPhotoFrom(picker: picker, With: info)
            
         case .recordVideo?:
-        // ToDo: handleFetchingVideo
+            handleDidFetchVideoFrom(picker: picker, With: info)
+        
+        case .saveResults?:
+            // ToDo:
+            // transition to next state
+            // save results
             break
         default:
             return
@@ -226,19 +247,13 @@ extension RecordViewController: UIImagePickerControllerDelegate {
     }
     
     private func handleDidFetchVideoFrom(picker: UIImagePickerController, With info: [UIImagePickerController.InfoKey : Any]) {
-//        // ToDo Change implementation based on state
-//        if let editedImage = info[.editedImage] as? UIImage {
-//            image = editedImage
-//        } else {
-//            image = info[.originalImage] as? UIImage
-//        }
-//
-//        let imageTesterVC = storyboard?.instantiateViewController(withIdentifier: "ARImageTesterViewController") as! ARImageTesterViewController
-//        imageTesterVC.image = image
-//        imageTesterVC.delegate = self
-//
-//        picker.dismiss(animated: false)
-//        present(imageTesterVC, animated: true, completion: nil)
+
+        if let url = info[.mediaURL] as? URL {
+            self.url = url 
+        }
+
+        transitionToNextState()
+        picker.dismiss(animated: false)
     }
 }
 
