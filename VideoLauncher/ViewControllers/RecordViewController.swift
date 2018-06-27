@@ -10,6 +10,7 @@ import UIKit
 
 class RecordViewController: UIViewController {
     @IBOutlet var recordButton: UIButton!
+    @IBOutlet var resetButton: UIButton!
     
     let imagePickerController = UIImagePickerController()
     var image: UIImage?
@@ -101,6 +102,8 @@ class RecordViewController: UIViewController {
     
     private func setViewsForRecordPhtoto() {
         DispatchQueue.main.async {
+            self.resetButton.isHidden = true
+            
             self.recordButton.isEnabled = true
             self.recordButton.tintColor = UIColor.red
             self.recordButton.setTitle("Record Picture", for: .normal)
@@ -109,6 +112,9 @@ class RecordViewController: UIViewController {
     
     private func setViewsForRecordVideo() {
         DispatchQueue.main.async {
+            self.resetButton.isHidden = false
+            self.resetButton.isEnabled = true
+            
             self.recordButton.isEnabled = true
             self.recordButton.tintColor = UIColor.red
             self.recordButton.setTitle("Record Video", for: .normal)
@@ -117,6 +123,9 @@ class RecordViewController: UIViewController {
 
     private func setViewsForSave() {
         DispatchQueue.main.async {
+            self.resetButton.isHidden = false
+            self.resetButton.isEnabled = true
+            
             self.recordButton.isEnabled = true
             self.recordButton.tintColor = UIColor.blue
             self.recordButton.setTitle("Save", for: .normal)
@@ -125,6 +134,9 @@ class RecordViewController: UIViewController {
     
     private func setViewsForSaving() {
         DispatchQueue.main.async {
+            self.resetButton.isHidden = false
+            self.resetButton.isEnabled = false
+            
             self.recordButton.isEnabled = false
             self.recordButton.tintColor = UIColor.blue
             self.recordButton.setTitle("Saving", for: .normal)
@@ -133,6 +145,9 @@ class RecordViewController: UIViewController {
     
     private func setViewsForSaved() {
         DispatchQueue.main.async {
+            self.resetButton.isHidden = false
+            self.resetButton.isEnabled = false
+            
             self.recordButton.isEnabled = false
             self.recordButton.tintColor = UIColor.blue
             self.recordButton.setTitle("Saved", for: .normal)
@@ -150,6 +165,10 @@ class RecordViewController: UIViewController {
             return
         }
         
+    }
+    
+    @IBAction func resetButtonTapped(_ sender: Any) {
+        cancel()
     }
     
     // MARK: - Helper Functions

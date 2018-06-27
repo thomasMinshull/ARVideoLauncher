@@ -64,11 +64,20 @@
                                     <action selector="RecordButtonTapped:" destination="t2V-P5-g2W" eventType="touchUpInside" id="GU3-W5-uz5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGT-7u-eCJ">
+                                <rect key="frame" x="16" y="64" width="50" height="30"/>
+                                <state key="normal" title="Restart"/>
+                                <connections>
+                                    <action selector="resetButtonTapped:" destination="t2V-P5-g2W" eventType="touchUpInside" id="EIu-T5-sOc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4ht-wS-CaR" firstAttribute="centerX" secondItem="bGC-nY-4ay" secondAttribute="centerX" id="GC3-WA-HBk"/>
                             <constraint firstItem="4ht-wS-CaR" firstAttribute="centerY" secondItem="bGC-nY-4ay" secondAttribute="centerY" id="KJY-7q-KZH"/>
+                            <constraint firstItem="HGT-7u-eCJ" firstAttribute="leading" secondItem="bGC-nY-4ay" secondAttribute="leading" constant="16" id="Um0-Xf-uP2"/>
+                            <constraint firstItem="HGT-7u-eCJ" firstAttribute="top" secondItem="bGC-nY-4ay" secondAttribute="top" id="ZB1-sF-3jY"/>
                             <constraint firstItem="4ht-wS-CaR" firstAttribute="width" secondItem="zJK-2A-Te2" secondAttribute="width" multiplier="1:2" id="jXf-CW-TrU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bGC-nY-4ay"/>
@@ -76,6 +85,7 @@
                     <navigationItem key="navigationItem" id="xRJ-BZ-tKG"/>
                     <connections>
                         <outlet property="recordButton" destination="4ht-wS-CaR" id="ZPe-gx-gL2"/>
+                        <outlet property="resetButton" destination="HGT-7u-eCJ" id="fC9-tx-Baf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85v-Bg-COT" userLabel="First Responder" sceneMemberID="firstResponder"/>
