@@ -11,6 +11,7 @@ import UIKit
 class RecordViewController: UIViewController {
     @IBOutlet var recordButton: UIButton!
     @IBOutlet var resetButton: UIButton!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     let imagePickerController = UIImagePickerController()
     private var image: UIImage?
@@ -105,6 +106,8 @@ class RecordViewController: UIViewController {
     
     private func setViewsForRecordPhtoto() {
         DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            
             self.resetButton.isHidden = true
             
             self.recordButton.isEnabled = true
@@ -137,6 +140,8 @@ class RecordViewController: UIViewController {
     
     private func setViewsForSaving() {
         DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+            
             self.resetButton.isHidden = false
             self.resetButton.isEnabled = false
             
@@ -148,6 +153,8 @@ class RecordViewController: UIViewController {
     
     private func setViewsForSaved() {
         DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            
             self.resetButton.isHidden = false
             self.resetButton.isEnabled = false
             
@@ -166,6 +173,8 @@ class RecordViewController: UIViewController {
             presentCameraForPhoto()
         case .recordVideo?:
             presentCameraForVideo()
+        case .saveResults?:
+            saveSnipit()
         default:
             return
         }
@@ -180,8 +189,6 @@ class RecordViewController: UIViewController {
     
     func presentCameraForPhoto() {
         let imageKey = "public.image"
-        
-        let keys = UIImagePickerController.availableMediaTypes(for: .camera)
         
         guard (UIImagePickerController.availableMediaTypes(for: .camera)?.contains(imageKey))! else {
             return
@@ -206,6 +213,40 @@ class RecordViewController: UIViewController {
         present(imagePickerController, animated: true, completion: nil)
     }
     
+    func saveSnipit() {
+        guard let image = image,
+            let url = url else {
+                presentWillCancelAllertWith(title: "An Error Occured", message: "Unable to save, please try again")
+                return
+        }
+        
+        transitionToNextState() // now saving
+        
+        PersistanceManager().saveNewSnipitWith(image: image, video: url) { success in
+            if success {
+                transitionToNextState()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self.transitionToNextState()
+                })
+                
+            } else {
+                presentWillCancelAllertWith(title: "An Error Occured", message: "Unable to save, please try again")
+            }
+        }
+    }
+    
+    private func presentWillCancelAllertWith(title: String?, message: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+            self.cancel()
+        }
+        
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 extension RecordViewController: UIImagePickerControllerDelegate {
@@ -217,12 +258,6 @@ extension RecordViewController: UIImagePickerControllerDelegate {
            
         case .recordVideo?:
             handleDidFetchVideoFrom(picker: picker, With: info)
-        
-        case .saveResults?:
-            // ToDo:
-            // transition to next state
-            // save results
-            break
         default:
             return
         }
@@ -261,22 +296,9 @@ extension RecordViewController: UIImagePickerControllerDelegate {
 
 extension RecordViewController: ImageTesterDelegate {
     func ARImageTesterViewController(_ imageTesterViewController: ARImageTesterViewController, didVerify image: UIImage) {
-        imageTesterViewController.dismiss(animated: true, completion: nil)
       
-        transitionToNextState()
-        
-        // ToDO update state
-        
-        // We have an image
-        // ToDo:
-        /*
-         - get video
-         - create dataStructure to store Image / video's
-         - persist Image/Video
-         - load Image/Video
-         - Refactor, clean up code
-         - Implement Anchoring on longpress from other branch
-         */
+        imageTesterViewController.dismiss(animated: true, completion: nil)
+        transitionToNextState() // saveResults
     }
 }
 
