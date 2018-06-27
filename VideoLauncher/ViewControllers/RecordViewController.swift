@@ -78,6 +78,8 @@ class RecordViewController: UIViewController {
             print("Cannot Cancel from Saved State")
             return
         }
+        url = nil
+        image = nil 
         state = .recordPhoto
     }
     
@@ -249,7 +251,7 @@ extension RecordViewController: UIImagePickerControllerDelegate {
     private func handleDidFetchVideoFrom(picker: UIImagePickerController, With info: [UIImagePickerController.InfoKey : Any]) {
 
         if let url = info[.mediaURL] as? URL {
-            self.url = url 
+            self.url = url
         }
 
         transitionToNextState()
