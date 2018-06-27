@@ -105,7 +105,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let node = SCNNode()
         
         if let _ = anchor as? ARImageAnchor {
-            let vidNode = VideoNode(with: 2.0, height: 1.5, fileName: "will.mov")
+            let vidNode = VideoNode(with: 1.0, height: 1.36, fileName: "will.mov")
             return vidNode
         }
      

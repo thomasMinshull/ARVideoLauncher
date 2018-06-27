@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "dl.jpg"
+      "filename" : "steve-wozniak 2.jpg"
     }
   ],
   "info" : {
@@ -10,6 +10,6 @@
     "author" : "xcode"
   },
   "properties" : {
-    "width" : 2
+    "width" : 1
   }
 }
