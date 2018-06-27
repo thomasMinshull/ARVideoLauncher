@@ -74,6 +74,9 @@
                         <viewLayoutGuide key="safeArea" id="bGC-nY-4ay"/>
                     </view>
                     <navigationItem key="navigationItem" id="xRJ-BZ-tKG"/>
+                    <connections>
+                        <outlet property="recordButton" destination="4ht-wS-CaR" id="ZPe-gx-gL2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="85v-Bg-COT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
