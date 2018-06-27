@@ -16,6 +16,7 @@
 		55D8197920E17C87009C4843 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D8197720E17C87009C4843 /* Main.storyboard */; };
 		55D8197B20E17C89009C4843 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D8197A20E17C89009C4843 /* Assets.xcassets */; };
 		55D8197E20E17C89009C4843 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D8197C20E17C89009C4843 /* LaunchScreen.storyboard */; };
+		55F8DF7E20E43F9B0039174D /* Snipit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8DF7D20E43F9B0039174D /* Snipit.swift */; };
 		BD34D7374B964847FC0FC653 /* Pods_VideoLauncher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC3CC4E223FC9F5E1193FD6 /* Pods_VideoLauncher.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		55D8197A20E17C89009C4843 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55D8197D20E17C89009C4843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55D8197F20E17C89009C4843 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55F8DF7D20E43F9B0039174D /* Snipit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snipit.swift; sourceTree = "<group>"; };
 		CDEA2DB9096D2139CABEB6AD /* Pods-VideoLauncher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoLauncher.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoLauncher/Pods-VideoLauncher.release.xcconfig"; sourceTree = "<group>"; };
 		DFC3CC4E223FC9F5E1193FD6 /* Pods_VideoLauncher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VideoLauncher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -99,12 +101,21 @@
 			isa = PBXGroup;
 			children = (
 				55BC5F5E20E1C85100A2C0D5 /* will.mov */,
+				55F8DF7F20E441D10039174D /* Model */,
 				5584860120E310AA008E37C1 /* ViewControllers */,
 				5584860220E310D2008E37C1 /* SCNNodes */,
 				55D8197F20E17C89009C4843 /* Info.plist */,
 				5584860320E31156008E37C1 /* Resources */,
 			);
 			path = VideoLauncher;
+			sourceTree = "<group>";
+		};
+		55F8DF7F20E441D10039174D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				55F8DF7D20E43F9B0039174D /* Snipit.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9966B01971103AF5FF069DD6 /* Pods */ = {
@@ -257,6 +268,7 @@
 			files = (
 				55BC5F5C20E1ADFB00A2C0D5 /* VideoNode.swift in Sources */,
 				5584860520E33555008E37C1 /* ARImageTesterViewController.swift in Sources */,
+				55F8DF7E20E43F9B0039174D /* Snipit.swift in Sources */,
 				55D8197620E17C87009C4843 /* ViewController.swift in Sources */,
 				55D8197220E17C87009C4843 /* AppDelegate.swift in Sources */,
 				5584860020E30C26008E37C1 /* RecordViewController.swift in Sources */,
@@ -408,7 +420,10 @@
 				DEVELOPMENT_TEAM = FHZ72ELYQ2;
 				INFOPLIST_FILE = VideoLauncher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.VideoLauncher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -425,7 +440,10 @@
 				DEVELOPMENT_TEAM = FHZ72ELYQ2;
 				INFOPLIST_FILE = VideoLauncher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomm.VideoLauncher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
