@@ -43,7 +43,12 @@ extension RecordViewController: UIImagePickerControllerDelegate {
             image = info[.originalImage] as? UIImage
         }
 
-        // ToDo Segue to next scene to Test Image Detection 
+        let imageTesterVC = storyboard?.instantiateViewController(withIdentifier: "ARImageTesterViewController") as! ARImageTesterViewController
+        imageTesterVC.image = image
+        imageTesterVC.delegate = self
+        
+        picker.dismiss(animated: false)
+        present(imageTesterVC, animated: true, completion: nil)
     }
     
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -51,6 +56,16 @@ extension RecordViewController: UIImagePickerControllerDelegate {
     }
 }
 
+extension RecordViewController: ImageTesterDelegate {
+    func ARImageTesterViewController(_ imageTesterViewController: ARImageTesterViewController, didVerify image: UIImage) {
+        imageTesterViewController.dismiss(animated: true, completion: nil)
+        
+        // We have an image 
+        
+    }
+    
+    
+}
 
 extension RecordViewController: UINavigationControllerDelegate {
 //    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {

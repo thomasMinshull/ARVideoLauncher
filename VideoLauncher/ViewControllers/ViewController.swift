@@ -38,7 +38,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         let configuration = ARWorldTrackingConfiguration()
         configuration.detectionImages = trackingImages
-
+        configuration.maximumNumberOfTrackedImages = trackingImages.count
         sceneView.session.run(configuration)
         
     }
