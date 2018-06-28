@@ -101,6 +101,8 @@ class PersistanceManager: NSObject {
                 snipit.videoPath = videoURL.relativeString
                 snipit.name = uuid.uuidString
                 snipit.width = 2
+                
+                realm.add(snipit)
             }
 
         } catch let error {
