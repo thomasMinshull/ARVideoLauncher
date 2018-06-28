@@ -49,9 +49,7 @@ class PersistanceManager: NSObject {
     }
     
     private func writeImageToFile(name: String, image: UIImage, _ fileManager: FileManager = FileManager.default) -> URL? {
-        
-        guard let documentDirectory = try? fileManager.url(for: FileManager.SearchPathDirectory.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else
-        {
+        guard let documentDirectory = try? fileManager.url(for: FileManager.SearchPathDirectory.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else{
             return nil
         }
         
@@ -71,15 +69,25 @@ class PersistanceManager: NSObject {
     }
     
     private func writeVideoToFile(name: String, videoURL: URL, _ fileManager: FileManager = FileManager.default) -> URL? {
-        guard let documentDirectory = try? fileManager.url(for: FileManager.SearchPathDirectory.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else
-        {
+        guard let documentDirectory = try? fileManager.url(for: FileManager.SearchPathDirectory.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else{
             return nil
         }
         
-        // ToDo Move viedo 
-       // fileManager.moveItem(at: <#T##URL#>, to: <#T##URL#>)
+        var newVideoURL = documentDirectory.appendingPathComponent(videoDirectoryName)
+        if !fileManager.fileExists(atPath: newVideoURL.path) {
+            try? fileManager.createDirectory(at: newVideoURL, withIntermediateDirectories: true, attributes: nil)
+        }
         
-        return nil
+        newVideoURL = newVideoURL.appendingPathComponent(name)
+        newVideoURL = newVideoURL.appendingPathExtension(videoURL.pathExtension)
+        
+        do {
+            try fileManager.moveItem(at: videoURL, to: newVideoURL)
+            return newVideoURL
+        } catch let error {
+            print("Unable to move video from url: \(videoURL) to url: \(newVideoURL). Error: \(error)")
+            return nil
+        }
     }
     
     private func createAndSaveSnipitWith(uuid: UUID, imageURL: URL, videoURL: URL) -> Bool {
