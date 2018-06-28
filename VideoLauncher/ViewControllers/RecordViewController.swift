@@ -223,15 +223,17 @@ class RecordViewController: UIViewController {
         transitionToNextState() // now saving
         
         PersistanceManager().saveNewSnipitWith(image: image, video: url) { success in
-            if success {
-                transitionToNextState()
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            DispatchQueue.main.async {
+                if success {
                     self.transitionToNextState()
-                })
-                
-            } else {
-                presentWillCancelAllertWith(title: "An Error Occured", message: "Unable to save, please try again")
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        self.transitionToNextState()
+                    })
+                    
+                } else {
+                    self.presentWillCancelAllertWith(title: "An Error Occured", message: "Unable to save, please try again")
+                }
             }
         }
     }

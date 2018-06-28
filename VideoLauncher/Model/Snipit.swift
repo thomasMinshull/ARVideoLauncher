@@ -14,6 +14,8 @@ class Snipit: Object {
     @objc dynamic var videoUrlString = ""
     @objc dynamic var name = ""
     @objc dynamic var width = 0
-    @objc dynamic var height = 0
-
+    
+    func save() -> Bool {
+        return false
+    }
 }
