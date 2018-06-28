@@ -111,7 +111,7 @@ class RecordViewController: UIViewController {
             self.resetButton.isHidden = true
             
             self.recordButton.isEnabled = true
-            self.recordButton.tintColor = UIColor.red
+            self.recordButton.setTitleColor(UIColor.red, for: .normal)
             self.recordButton.setTitle("Record Picture", for: .normal)
         }
     }
@@ -122,7 +122,7 @@ class RecordViewController: UIViewController {
             self.resetButton.isEnabled = true
             
             self.recordButton.isEnabled = true
-            self.recordButton.tintColor = UIColor.red
+            self.recordButton.setTitleColor(UIColor.red, for: .normal)
             self.recordButton.setTitle("Record Video", for: .normal)
         }
     }
@@ -133,7 +133,7 @@ class RecordViewController: UIViewController {
             self.resetButton.isEnabled = true
             
             self.recordButton.isEnabled = true
-            self.recordButton.tintColor = UIColor.blue
+            self.recordButton.setTitleColor(self.recordButton.tintColor, for: .normal)
             self.recordButton.setTitle("Save", for: .normal)
         }
     }
@@ -146,7 +146,7 @@ class RecordViewController: UIViewController {
             self.resetButton.isEnabled = false
             
             self.recordButton.isEnabled = false
-            self.recordButton.tintColor = UIColor.blue
+            self.recordButton.setTitleColor(self.recordButton.tintColor, for: .normal)
             self.recordButton.setTitle("Saving", for: .normal)
         }
     }
@@ -159,7 +159,7 @@ class RecordViewController: UIViewController {
             self.resetButton.isEnabled = false
             
             self.recordButton.isEnabled = false
-            self.recordButton.tintColor = UIColor.blue
+            self.recordButton.setTitleColor(self.recordButton.tintColor, for: .normal)
             self.recordButton.setTitle("Saved", for: .normal)
         }
     }
