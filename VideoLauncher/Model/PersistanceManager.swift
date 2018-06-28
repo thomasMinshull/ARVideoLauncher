@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PersistanceManager: NSObject {
     private let videoDirectoryName = "videos"
@@ -91,12 +92,22 @@ class PersistanceManager: NSObject {
     }
     
     private func createAndSaveSnipitWith(uuid: UUID, imageURL: URL, videoURL: URL) -> Bool {
-        let snipit = Snipit()
-        snipit.imageUrlString = imageURL.relativeString
-        snipit.videoUrlString = videoURL.relativeString
-        snipit.name = uuid.uuidString
-        snipit.width = 2
+        do {
+            let realm = try Realm()
+            
+            try realm.write {
+                let snipit = Snipit()
+                snipit.imagePath = imageURL.relativeString
+                snipit.videoPath = videoURL.relativeString
+                snipit.name = uuid.uuidString
+                snipit.width = 2
+            }
+
+        } catch let error {
+            print("Unable to save Snipit. Error: \(error)")
+            return false
+        }
         
-        return snipit.save()
+        return true
     }
 }

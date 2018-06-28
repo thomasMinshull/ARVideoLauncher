@@ -10,12 +10,8 @@ import UIKit
 import RealmSwift
 
 class Snipit: Object {
-    @objc dynamic var imageUrlString = ""
-    @objc dynamic var videoUrlString = ""
-    @objc dynamic var name = ""
-    @objc dynamic var width = 0
-    
-    func save() -> Bool {
-        return false
-    }
+    @objc dynamic var imagePath: String?
+    @objc dynamic var videoPath: String?
+    @objc dynamic var name: String?
+    @objc dynamic var width: Double = -1
 }

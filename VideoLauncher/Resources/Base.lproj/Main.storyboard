@@ -133,7 +133,7 @@
                                 <rect key="frame" x="62.5" y="597" width="250" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAw-PN-KH4">
-                                        <rect key="frame" x="101" y="10" width="48" height="30"/>
+                                        <rect key="frame" x="10" y="10" width="230" height="30"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -144,11 +144,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bAw-PN-KH4" secondAttribute="trailing" constant="10" id="DFb-nG-LmF"/>
+                                    <constraint firstAttribute="trailing" secondItem="bAw-PN-KH4" secondAttribute="trailing" constant="10" id="DFb-nG-LmF"/>
                                     <constraint firstItem="bAw-PN-KH4" firstAttribute="centerX" secondItem="pTV-58-9Yd" secondAttribute="centerX" id="XwQ-fi-W0w"/>
                                     <constraint firstItem="bAw-PN-KH4" firstAttribute="centerY" secondItem="pTV-58-9Yd" secondAttribute="centerY" id="a16-Ag-UuY"/>
                                     <constraint firstAttribute="bottom" secondItem="bAw-PN-KH4" secondAttribute="bottom" constant="10" id="idh-du-e4w"/>
-                                    <constraint firstItem="bAw-PN-KH4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pTV-58-9Yd" secondAttribute="leading" constant="10" id="wim-RY-gvW"/>
+                                    <constraint firstItem="bAw-PN-KH4" firstAttribute="leading" secondItem="pTV-58-9Yd" secondAttribute="leading" constant="10" id="wim-RY-gvW"/>
                                     <constraint firstItem="bAw-PN-KH4" firstAttribute="top" secondItem="pTV-58-9Yd" secondAttribute="top" constant="10" id="znM-E9-Yn8"/>
                                 </constraints>
                             </view>
