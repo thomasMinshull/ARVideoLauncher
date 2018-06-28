@@ -18,7 +18,8 @@ class PersistanceManager: NSObject {
         do {
             let realm = try Realm()
             
-            let snipits = realm.objects(Snipit.self) // ToDo Take the last 25
+            let realmSnipits = realm.objects(RealmSnipit.self) // ToDo Take the last 25
+            let snipits = realmSnipits.map({ Snipit(realmSnipit: $0) })
             return Array(snipits)
             
         } catch let error {
@@ -110,7 +111,7 @@ class PersistanceManager: NSObject {
             let realm = try Realm()
             
             try realm.write {
-                let snipit = Snipit()
+                let snipit = RealmSnipit()
                 snipit.imagePath = imageURL.path
                 snipit.videoPath = videoURL.path
                 snipit.name = uuid.uuidString

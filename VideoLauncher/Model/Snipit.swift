@@ -9,7 +9,21 @@
 import UIKit
 import RealmSwift
 
-class Snipit: Object {
+struct Snipit {
+    let imagePath: String
+    let videoPath: String
+    let name: String
+    let width: Double
+    
+    init(realmSnipit: RealmSnipit) {
+        imagePath = realmSnipit.imagePath!
+        videoPath = realmSnipit.videoPath!
+        name = realmSnipit.name!
+        width = realmSnipit.width
+    }
+}
+
+class RealmSnipit: Object {
     @objc dynamic var imagePath: String?
     @objc dynamic var videoPath: String?
     @objc dynamic var name: String?
