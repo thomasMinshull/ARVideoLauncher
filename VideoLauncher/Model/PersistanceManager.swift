@@ -13,6 +13,21 @@ class PersistanceManager: NSObject {
     private let videoDirectoryName = "videos"
     private let imageDirectoryName = "images"
     
+    func fetchSnipits() -> [Snipit] {
+        // ToDo Should only be able to save a max of 25 snipits
+        do {
+            let realm = try Realm()
+            
+            let realmSnipits = realm.objects(RealmSnipit.self) // ToDo Take the last 25
+            let snipits = realmSnipits.map({ Snipit(realmSnipit: $0) })
+            return Array(snipits)
+            
+        } catch let error {
+            print("Unable to fetch snipits. Error: \(error)")
+            return [Snipit]()
+        }
+    }
+    
     func saveNewSnipitWith(image: UIImage, video: URL, _ fileManager: FileManager = FileManager.default, with completionBlock: @escaping (Bool) -> ()) {
         DispatchQueue.global().async {
             let uuid = UUID()
@@ -96,11 +111,13 @@ class PersistanceManager: NSObject {
             let realm = try Realm()
             
             try realm.write {
-                let snipit = Snipit()
-                snipit.imagePath = imageURL.relativeString
-                snipit.videoPath = videoURL.relativeString
+                let snipit = RealmSnipit()
+                snipit.imagePath = imageURL.path
+                snipit.videoPath = videoURL.path
                 snipit.name = uuid.uuidString
                 snipit.width = 2
+                
+                realm.add(snipit)
             }
 
         } catch let error {

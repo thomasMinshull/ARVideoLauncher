@@ -16,7 +16,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    private let highPriorityBackgroundQueue = DispatchQueue(label: "highPriorityBackgroundQueue", qos: .userInteractive)
     private var trackingImages = Set<ARReferenceImage>()
+    private var snipits = [Snipit]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,20 +29,42 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         
         sceneView.scene = SCNScene()
-        
-        if let images = ARReferenceImage.referenceImages(inGroupNamed: "TrackingImages", bundle: nil) {
-            trackingImages = images
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.detectionImages = trackingImages
-        configuration.maximumNumberOfTrackedImages = trackingImages.count
-        sceneView.session.run(configuration)
         
+        let persistanceManager = PersistanceManager()
+        
+        highPriorityBackgroundQueue.async {
+            self.snipits = persistanceManager.fetchSnipits()
+            
+            let trackingImagesArray = self.snipits.compactMap { (snipit) -> ARReferenceImage? in
+                if let image = UIImage(contentsOfFile: snipit.imagePath),
+                    let cgImage = image.cgImage {
+                    
+                    let refImage =  ARReferenceImage(cgImage,
+                                                     orientation: .up,
+                                                     physicalWidth: CGFloat(snipit.width)) 
+                    refImage.name = snipit.name
+                    print("refImageName: " + refImage.name!)
+                    
+                    return refImage
+                } else {
+                    return nil
+                }
+            }
+            
+            self.trackingImages = Set(trackingImagesArray)
+            
+            let configuration = ARWorldTrackingConfiguration()
+            configuration.detectionImages = self.trackingImages
+            configuration.maximumNumberOfTrackedImages = self.trackingImages.count
+            
+            DispatchQueue.main.async {
+                self.sceneView.session.run(configuration)
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -104,11 +128,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         let node = SCNNode()
         
-        if let _ = anchor as? ARImageAnchor {
-            let vidNode = VideoNode(with: 1.0, height: 1.36, fileName: "will.mov")
-            return vidNode
+        if let anchor = anchor as? ARImageAnchor,
+            let anchorImageName = anchor.referenceImage.name,
+            let snipit = snipits.first(where: { $0.name == anchorImageName } ) {
+                return VideoNode(with: 1.0, height: 1.36, fileName: snipit.videoPath)
         }
-     
+        
         return node
     }
     
