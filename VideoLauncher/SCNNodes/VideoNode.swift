@@ -17,12 +17,8 @@ class VideoNode: SCNNode {
     
     init(with width: CGFloat, height: CGFloat, fileName: String, rotation: Float = 0.0) {
         super.init()
-
-        guard let urlString = Bundle.main.path(forResource: "will", ofType: "mov") else {
-            fatalError("Can't construct url for file")
-        }
         
-        let url = URL(fileURLWithPath: urlString)
+        let url = URL(fileURLWithPath: fileName)
         videoSpriteKitNode = SKVideoNode(url: url)
         
         spriteKitScene = SKScene(size: CGSize(width: 640, height: 480))

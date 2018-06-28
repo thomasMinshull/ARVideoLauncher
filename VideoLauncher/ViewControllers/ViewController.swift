@@ -40,14 +40,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             self.snipits = persistanceManager.fetchSnipits()
             
             let trackingImagesArray = self.snipits.compactMap { (snipit) -> ARReferenceImage? in
-                if let imagePath = snipit.imagePath,
-                    let image = UIImage(contentsOfFile: imagePath),
+                if let image = UIImage(contentsOfFile: snipit.imagePath),
                     let cgImage = image.cgImage {
                     
                     let refImage =  ARReferenceImage(cgImage,
                                                      orientation: .up,
                                                      physicalWidth: CGFloat(snipit.width)) 
                     refImage.name = snipit.name
+                    print("refImageName: " + refImage.name!)
+                    
                     return refImage
                 } else {
                     return nil
@@ -59,7 +60,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let configuration = ARWorldTrackingConfiguration()
             configuration.detectionImages = self.trackingImages
             configuration.maximumNumberOfTrackedImages = self.trackingImages.count
-            self.sceneView.session.run(configuration)
+            
+            DispatchQueue.main.async {
+                self.sceneView.session.run(configuration)
+            }
         }
     }
     
@@ -124,13 +128,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         let node = SCNNode()
         
-        if let _ = anchor as? ARImageAnchor {
-            anchor.name
-            
-            let vidNode = VideoNode(with: 1.0, height: 1.36, fileName: "will.mov")
-            return vidNode
+        if let anchor = anchor as? ARImageAnchor,
+            let anchorImageName = anchor.referenceImage.name,
+            let snipit = snipits.first(where: { $0.name == anchorImageName } ) {
+                return VideoNode(with: 1.0, height: 1.36, fileName: snipit.videoPath)
         }
-     
+        
         return node
     }
     
